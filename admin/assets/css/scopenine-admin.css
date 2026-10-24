@@ -1,0 +1,1085 @@
+/**
+ * Alert Bar — Admin Styles
+ *
+ * Admin UI styles for the Scope Nine Alert Bar plugin.
+ *
+ * @since 1.0.0
+ */
+
+/* =============================================
+   Variables & Base
+   ============================================= */
+:root {
+	--scopenine-primary: #3858e9;
+	--scopenine-primary-light: #eef1fd;
+	--scopenine-primary-hover: #2b46c4;
+	--scopenine-border: #e0e0e0;
+	--scopenine-border-light: #f0f0f1;
+	--scopenine-bg-subtle: #f6f7f7;
+	--scopenine-text: #1d2327;
+	--scopenine-text-muted: #646970;
+	--scopenine-card-shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+	--scopenine-card-shadow-hover: 0 4px 12px rgba(0,0,0,.08);
+	--scopenine-radius: 8px;
+	--scopenine-radius-sm: 6px;
+}
+
+.scopenine-wrap {
+	margin: 0;
+	padding: 0 20px 40px 0;
+}
+
+/* =============================================
+   Admin Header
+   ============================================= */
+.scopenine-admin-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 20px 0 24px;
+	padding: 20px 24px;
+	background: #fff;
+	border: 1px solid var(--scopenine-border);
+	border-radius: var(--scopenine-radius);
+	box-shadow: var(--scopenine-card-shadow);
+}
+
+.scopenine-admin-header-inner {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.scopenine-header-icon {
+	font-size: 28px;
+	width: 48px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--scopenine-primary-light);
+	color: var(--scopenine-primary);
+	border-radius: 10px;
+}
+
+.scopenine-admin-title {
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: 22px;
+	font-weight: 700;
+	color: var(--scopenine-text);
+	line-height: 1.3;
+}
+
+.scopenine-admin-subtitle {
+	margin: 2px 0 0;
+	font-size: 13px;
+	color: var(--scopenine-text-muted);
+}
+
+.scopenine-version-badge {
+	display: inline-block;
+	padding: 4px 10px;
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--scopenine-primary);
+	background: var(--scopenine-primary-light);
+	border-radius: 20px;
+	letter-spacing: .3px;
+}
+
+/* =============================================
+   Live Preview
+   ============================================= */
+.scopenine-preview-wrapper {
+	position: sticky;
+	top: 32px;
+	z-index: 99;
+	margin-bottom: 24px;
+	border-radius: var(--scopenine-radius);
+	overflow: hidden;
+	box-shadow: var(--scopenine-card-shadow);
+	border: 1px solid var(--scopenine-border);
+}
+
+.scopenine-preview-label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 16px;
+	background: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: .6px;
+	color: var(--scopenine-text-muted);
+	border-bottom: 1px solid var(--scopenine-border-light);
+}
+
+.scopenine-preview-label .dashicons {
+	font-size: 14px;
+	width: 14px;
+	height: 14px;
+}
+
+.scopenine-live-preview {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	position: relative;
+	padding: 0 40px;
+	transition: all .2s ease;
+}
+
+.scopenine-live-preview-content {
+	line-height: 1.4;
+}
+
+.scopenine-live-preview-content a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.scopenine-live-preview-close {
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: .85;
+	line-height: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: default;
+}
+
+/* =============================================
+   Cards
+   ============================================= */
+.scopenine-card {
+	background: #fff;
+	border: 1px solid var(--scopenine-border);
+	border-radius: var(--scopenine-radius);
+	box-shadow: var(--scopenine-card-shadow);
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+.scopenine-card-header {
+	padding: 16px 24px;
+	border-bottom: 1px solid var(--scopenine-border-light);
+	background: var(--scopenine-bg-subtle);
+}
+
+.scopenine-card-title {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--scopenine-text);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.scopenine-card-title .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+	color: var(--scopenine-primary);
+}
+
+.scopenine-card-body {
+	padding: 8px 24px 16px;
+}
+
+/* =============================================
+   Form Tables — Custom Styles
+   ============================================= */
+.scopenine-wrap .form-table,
+.scopenine-wrap .scopenine-form-table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+.scopenine-wrap .form-table th {
+	padding: 20px 20px 20px 0;
+	font-weight: 600;
+	font-size: 13px;
+	color: var(--scopenine-text);
+	vertical-align: top;
+	width: 180px;
+}
+
+.scopenine-wrap .form-table td {
+	padding: 16px 0;
+}
+
+.scopenine-wrap .form-table tr {
+	border-bottom: 1px solid var(--scopenine-border-light);
+}
+
+.scopenine-wrap .form-table tr:last-child {
+	border-bottom: none;
+}
+
+/* Override the WP default heading from settings_fields */
+.scopenine-wrap .scopenine-settings-content h2 {
+	display: none;
+}
+
+/* =============================================
+   Settings Fields
+   ============================================= */
+
+/* Color field — swatch + text input combo */
+.scopenine-color-field {
+	display: inline-flex;
+	align-items: center;
+	gap: 0;
+	border: 1px solid var(--scopenine-border);
+	border-radius: var(--scopenine-radius-sm);
+	overflow: hidden;
+	background: #fff;
+	transition: border-color .15s;
+}
+
+.scopenine-color-field:focus-within {
+	border-color: var(--scopenine-primary);
+	box-shadow: 0 0 0 1px var(--scopenine-primary-light);
+}
+
+.scopenine-color-swatch {
+	width: 38px;
+	height: 38px;
+	padding: 0;
+	border: none;
+	cursor: pointer;
+	flex-shrink: 0;
+	border-right: 1px solid var(--scopenine-border);
+}
+
+.scopenine-color-swatch::-webkit-color-swatch-wrapper {
+	padding: 3px;
+}
+
+.scopenine-color-swatch::-webkit-color-swatch {
+	border: none;
+	border-radius: 3px;
+}
+
+.scopenine-color-swatch::-moz-color-swatch {
+	border: none;
+	border-radius: 3px;
+}
+
+.scopenine-color-text {
+	width: 90px;
+	height: 38px;
+	padding: 0 10px;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	font-family: 'SF Mono', Menlo, Consolas, monospace;
+	font-size: 13px;
+	color: var(--scopenine-text);
+	background: transparent;
+	text-transform: uppercase;
+}
+
+/* Select fields (basic fallback) */
+.scopenine-wrap select.scopenine-settings-field {
+	min-width: 280px;
+	height: 38px;
+	padding: 6px 12px;
+	border: 1px solid var(--scopenine-border);
+	border-radius: var(--scopenine-radius-sm);
+	font-size: 13px;
+	color: var(--scopenine-text);
+	background: #fff;
+}
+
+/* =============================================
+   Fancy Select Component
+   ============================================= */
+.scopenine-fancy-select {
+	position: relative;
+	display: inline-block;
+	min-width: 280px;
+}
+
+.scopenine-fancy-select-trigger {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	padding: 10px 14px;
+	background: #fff;
+	border: 1px solid var(--scopenine-border);
+	border-radius: var(--scopenine-radius-sm);
+	cursor: pointer;
+	text-align: left;
+	font-size: 13px;
+	color: var(--scopenine-text);
+	transition: all .15s;
+}
+
+.scopenine-fancy-select-trigger:hover {
+	border-color: var(--scopenine-primary);
+	box-shadow: 0 2px 8px rgba(56,88,233,.08);
+}
+
+.scopenine-fancy-select.open .scopenine-fancy-select-trigger {
+	border-color: var(--scopenine-primary);
+	box-shadow: 0 0 0 2px var(--scopenine-primary-light);
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.scopenine-fancy-select-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	background: var(--scopenine-primary-light);
+	border-radius: 6px;
+	color: var(--scopenine-primary);
+	flex-shrink: 0;
+}
+
+.scopenine-fancy-select-icon .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.scopenine-fancy-select-label {
+	flex: 1;
+	font-weight: 500;
+}
+
+.scopenine-fancy-select-arrow {
+	color: var(--scopenine-text-muted);
+	transition: transform .2s;
+}
+
+.scopenine-fancy-select-arrow .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+.scopenine-fancy-select.open .scopenine-fancy-select-arrow {
+	transform: rotate(180deg);
+}
+
+.scopenine-fancy-select-options {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	margin: 0;
+	padding: 6px 0;
+	list-style: none;
+	background: #fff;
+	border: 1px solid var(--scopenine-primary);
+	border-top: none;
+	border-radius: 0 0 var(--scopenine-radius-sm) var(--scopenine-radius-sm);
+	box-shadow: 0 8px 24px rgba(0,0,0,.12);
+	z-index: 100;
+	display: none;
+	max-height: 240px;
+	overflow-y: auto;
+}
+
+.scopenine-fancy-select.open .scopenine-fancy-select-options {
+	display: block;
+	animation: scopenine-dropdown-in .15s ease;
+}
+
+@keyframes scopenine-dropdown-in {
+	from {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.scopenine-fancy-select-option {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 14px;
+	cursor: pointer;
+	font-size: 13px;
+	color: var(--scopenine-text);
+	transition: background .1s;
+}
+
+.scopenine-fancy-select-option:hover {
+	background: var(--scopenine-primary-light);
+}
+
+.scopenine-fancy-select-option.selected {
+	background: var(--scopenine-primary-light);
+	color: var(--scopenine-primary);
+	font-weight: 600;
+}
+
+.scopenine-fancy-select-option .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+	color: var(--scopenine-primary);
+	opacity: .7;
+}
+
+.scopenine-fancy-select-option.selected .dashicons,
+.scopenine-fancy-select-option:hover .dashicons {
+	opacity: 1;
+}
+
+/* Field descriptions */
+.scopenine-field-description {
+	display: block;
+	padding: 6px 0 0 0;
+	font-size: 12px;
+	color: var(--scopenine-text-muted);
+	line-height: 1.5;
+}
+
+.scopenine-field-inline-description {
+	font-size: 12px;
+	color: var(--scopenine-text-muted);
+	margin-left: 8px;
+	vertical-align: middle;
+}
+
+/* =============================================
+   Toggle / Checkbox
+   ============================================= */
+.scopenine-checkbox {
+	position: relative;
+	display: inline-block;
+	width: 44px;
+	height: 24px;
+}
+
+.scopenine-checkbox input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.scopenine-checkbox .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #c3c4c7;
+	transition: .25s;
+	border-radius: 24px;
+}
+
+.scopenine-checkbox .slider:before {
+	position: absolute;
+	content: "";
+	height: 18px;
+	width: 18px;
+	left: 3px;
+	bottom: 3px;
+	background-color: white;
+	transition: .25s;
+	border-radius: 50%;
+	box-shadow: 0 1px 3px rgba(0,0,0,.15);
+}
+
+.scopenine-checkbox input:checked + .slider {
+	background-color: var(--scopenine-primary);
+}
+
+.scopenine-checkbox input:focus + .slider {
+	box-shadow: 0 0 0 2px var(--scopenine-primary-light);
+}
+
+.scopenine-checkbox input:checked + .slider:before {
+	transform: translateX(20px);
+}
+
+label.scopenine-checkbox {
+	min-width: auto;
+}
+
+/* =============================================
+   WYSIWYG Editor
+   ============================================= */
+#wp-scopenine_news_title-wrap {
+	max-width: 600px;
+	border-radius: var(--scopenine-radius-sm);
+	overflow: hidden;
+}
+
+/* =============================================
+   Range Slider Fields
+   ============================================= */
+.scopenine-range-field {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	max-width: 340px;
+}
+
+.scopenine-range-field input[type="range"] {
+	flex: 1;
+	min-width: 200px;
+	cursor: pointer;
+	accent-color: var(--scopenine-primary);
+	height: 6px;
+}
+
+.scopenine-range-value {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 48px;
+	padding: 4px 8px;
+	font-weight: 600;
+	color: var(--scopenine-primary);
+	background: var(--scopenine-primary-light);
+	border-radius: 20px;
+	font-size: 12px;
+}
+
+/* =============================================
+   Padding Field
+   ============================================= */
+.scopenine-padding-field {
+	max-width: 420px;
+}
+
+.scopenine-padding-inputs {
+	display: flex;
+	align-items: flex-end;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.scopenine-padding-input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.scopenine-padding-input-group label {
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: .4px;
+	color: var(--scopenine-text-muted);
+}
+
+.scopenine-padding-input {
+	width: 60px;
+	height: 38px;
+	padding: 0 8px;
+	border: 1px solid var(--scopenine-border);
+	border-radius: var(--scopenine-radius-sm);
+	font-size: 13px;
+	text-align: center;
+	background: #fff;
+	transition: border-color .15s, box-shadow .15s;
+}
+
+.scopenine-padding-input:focus {
+	outline: none;
+	border-color: var(--scopenine-primary);
+	box-shadow: 0 0 0 2px var(--scopenine-primary-light);
+}
+
+.scopenine-padding-link-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 38px;
+	height: 38px;
+	padding: 0;
+	border: 1px solid var(--scopenine-border);
+	border-radius: var(--scopenine-radius-sm);
+	background: #fff;
+	cursor: pointer;
+	color: var(--scopenine-text-muted);
+	transition: all .15s;
+}
+
+.scopenine-padding-link-btn:hover {
+	background: var(--scopenine-primary-light);
+	border-color: var(--scopenine-primary);
+	color: var(--scopenine-primary);
+}
+
+.scopenine-padding-link-btn.scopenine-linked {
+	background: var(--scopenine-primary);
+	border-color: var(--scopenine-primary);
+	color: #fff;
+}
+
+.scopenine-padding-link-btn .dashicons {
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+/* =============================================
+   Close Icon Field
+   ============================================= */
+.scopenine-close-icon-field {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.scopenine-close-icon-preview {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px !important;
+	height: 44px !important;
+	background: #333 !important;
+	border-radius: var(--scopenine-radius-sm) !important;
+}
+
+.scopenine-close-icon-field .button {
+	vertical-align: middle;
+	border-radius: var(--scopenine-radius-sm);
+}
+
+/* =============================================
+   Page Selector
+   ============================================= */
+.scopenine-pages-selector {
+	border: 1px solid var(--scopenine-border);
+	background: #fff;
+	border-radius: var(--scopenine-radius-sm);
+	max-width: 420px;
+	overflow: hidden;
+}
+
+.scopenine-pages-search-wrap {
+	padding: 10px;
+	border-bottom: 1px solid var(--scopenine-border-light);
+	background: var(--scopenine-bg-subtle);
+}
+
+.scopenine-pages-search-wrap input {
+	width: 100%;
+	min-width: auto !important;
+	box-sizing: border-box;
+	height: 36px;
+	padding: 6px 12px;
+	border: 1px solid var(--scopenine-border);
+	border-radius: var(--scopenine-radius-sm);
+	font-size: 13px;
+}
+
+.scopenine-pages-list {
+	max-height: 260px;
+	overflow-y: auto;
+	padding: 4px 0;
+}
+
+.scopenine-pages-group-title {
+	margin: 0;
+	padding: 8px 14px 6px;
+	color: var(--scopenine-text-muted);
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: .6px;
+	border-bottom: 1px solid var(--scopenine-border-light);
+	background: var(--scopenine-bg-subtle);
+}
+
+.scopenine-page-item {
+	display: block;
+	padding: 7px 14px;
+	margin: 0;
+	cursor: pointer;
+	font-weight: normal;
+	font-size: 13px;
+	transition: background .12s;
+}
+
+.scopenine-page-item:hover {
+	background: var(--scopenine-primary-light);
+}
+
+.scopenine-page-item input[type="checkbox"] {
+	margin-right: 8px;
+	vertical-align: middle;
+	accent-color: var(--scopenine-primary);
+}
+
+.scopenine-pages-actions {
+	padding: 8px 14px;
+	border-top: 1px solid var(--scopenine-border);
+	background: var(--scopenine-bg-subtle);
+	font-size: 12px;
+}
+
+.scopenine-pages-actions a {
+	text-decoration: none;
+	color: var(--scopenine-primary);
+	font-weight: 600;
+}
+
+.scopenine-pages-actions a:hover {
+	color: var(--scopenine-primary-hover);
+}
+
+.scopenine-pages-actions span {
+	color: #c3c4c7;
+}
+
+/* =============================================
+   Utility
+   ============================================= */
+.scopenine-hide {
+	display: none;
+}
+
+/* =============================================
+   Meta Box Fields (post editor)
+   ============================================= */
+.scopenine-meta-main {
+	padding: 10px 0;
+}
+
+.scopenine-meta-control {
+	margin: 15px 0;
+}
+
+.scopenine-label {
+	min-width: 250px;
+	display: inline-block;
+	font-weight: 600;
+}
+
+.scopenine-small-description {
+	display: block;
+	max-width: 220px;
+	font-size: 12px;
+	color: var(--scopenine-text-muted);
+	margin-top: 4px;
+}
+
+body .scopenine-meta-field {
+	min-width: 280px;
+	border-radius: 0px !important;
+}
+
+/* =============================================
+   Submit Button Override
+   ============================================= */
+.scopenine-wrap .submit input[type="submit"],
+.scopenine-wrap .submit .button-primary {
+	background: var(--scopenine-primary);
+	border-color: var(--scopenine-primary);
+	color: #fff;
+	padding: 8px 28px;
+	height: auto;
+	font-size: 13px;
+	font-weight: 600;
+	border-radius: var(--scopenine-radius-sm);
+	box-shadow: 0 1px 2px rgba(56,88,233,.25);
+	transition: all .15s;
+}
+
+.scopenine-wrap .submit input[type="submit"]:hover,
+.scopenine-wrap .submit .button-primary:hover {
+	background: var(--scopenine-primary-hover);
+	border-color: var(--scopenine-primary-hover);
+	box-shadow: 0 2px 6px rgba(56,88,233,.3);
+}
+
+.scopenine-wrap .submit input[type="submit"]:focus,
+.scopenine-wrap .submit .button-primary:focus {
+	box-shadow: 0 0 0 2px var(--scopenine-primary-light), 0 1px 2px rgba(56,88,233,.25);
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+
+/* Tablet & small screens */
+@media (max-width: 960px) {
+	.scopenine-fancy-select {
+		min-width: 100%;
+		max-width: 100%;
+	}
+
+	.scopenine-pages-selector {
+		max-width: 100%;
+	}
+
+	#wp-scopenine_news_title-wrap {
+		max-width: 100%;
+	}
+}
+
+/* Mobile screens (WordPress admin breakpoint) */
+@media (max-width: 782px) {
+	/* Admin Header */
+	.scopenine-admin-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+		padding: 16px;
+		margin: 10px 0 16px;
+	}
+
+	.scopenine-admin-header-inner {
+		gap: 12px;
+	}
+
+	.scopenine-header-icon {
+		width: 40px;
+		height: 40px;
+		font-size: 22px;
+	}
+
+	.scopenine-admin-title {
+		font-size: 18px;
+	}
+
+	.scopenine-admin-subtitle {
+		font-size: 12px;
+	}
+
+	/* Live Preview */
+	.scopenine-preview-wrapper {
+		position: relative;
+		top: 0;
+		margin-bottom: 16px;
+	}
+
+	.scopenine-live-preview {
+		font-size: 12px !important;
+		padding: 8px 30px 8px 12px !important;
+	}
+
+	.scopenine-live-preview-close {
+		right: 8px;
+	}
+
+	/* Cards */
+	.scopenine-card-header {
+		padding: 12px 16px;
+	}
+
+	.scopenine-card-body {
+		padding: 8px 16px 16px;
+	}
+
+	/* Form Tables */
+	.scopenine-wrap .form-table,
+	.scopenine-wrap .form-table tbody,
+	.scopenine-wrap .form-table tr,
+	.scopenine-wrap .form-table th,
+	.scopenine-wrap .form-table td {
+		display: block;
+		width: 100%;
+	}
+
+	.scopenine-wrap .form-table th {
+		padding: 12px 0 4px;
+		font-size: 14px;
+	}
+
+	.scopenine-wrap .form-table td {
+		padding: 8px 0 16px;
+	}
+
+	.scopenine-wrap .form-table tr {
+		border-bottom: 1px solid var(--scopenine-border-light);
+		padding-bottom: 8px;
+	}
+
+	/* Fancy Select */
+	.scopenine-fancy-select {
+		min-width: 100%;
+	}
+
+	.scopenine-fancy-select-trigger {
+		padding: 12px;
+	}
+
+	.scopenine-fancy-select-icon {
+		width: 32px;
+		height: 32px;
+	}
+
+	.scopenine-fancy-select-label {
+		font-size: 14px;
+	}
+
+	.scopenine-fancy-select-options {
+		max-height: 200px;
+	}
+
+	.scopenine-fancy-select-option {
+		padding: 12px;
+	}
+
+	/* Color Fields */
+	.scopenine-color-field {
+		width: 100%;
+		max-width: 180px;
+	}
+
+	.scopenine-color-text {
+		flex: 1;
+		width: auto;
+	}
+
+	/* Padding Fields */
+	.scopenine-padding-field {
+		max-width: 100%;
+	}
+
+	.scopenine-padding-inputs {
+		gap: 8px;
+	}
+
+	.scopenine-padding-input-group {
+		flex: 1;
+		min-width: 55px;
+	}
+
+	.scopenine-padding-input {
+		width: 100%;
+		min-width: 0;
+	}
+
+	.scopenine-padding-link-btn {
+		flex-shrink: 0;
+	}
+
+	/* Range Fields */
+	.scopenine-range-field {
+		max-width: 100%;
+		flex-wrap: wrap;
+	}
+
+	.scopenine-range-field input[type="range"] {
+		min-width: 0;
+		width: 100%;
+	}
+
+	/* Page Selector */
+	.scopenine-pages-selector {
+		max-width: 100%;
+	}
+
+	.scopenine-pages-list {
+		max-height: 200px;
+	}
+
+	/* Close Icon Field */
+	.scopenine-close-icon-field {
+		flex-wrap: wrap;
+	}
+
+	/* WYSIWYG */
+	#wp-scopenine_news_title-wrap {
+		max-width: 100%;
+	}
+
+	/* Meta Box */
+	.scopenine-label {
+		min-width: 100%;
+		margin-bottom: 6px;
+	}
+
+	body .scopenine-meta-field {
+		min-width: 100%;
+		width: 100%;
+	}
+
+	/* Submit Button */
+	.scopenine-wrap .submit {
+		padding-top: 8px;
+	}
+
+	.scopenine-wrap .submit input[type="submit"] {
+		width: 100%;
+		padding: 12px 20px;
+		font-size: 14px;
+	}
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+	.scopenine-admin-header {
+		padding: 12px;
+	}
+
+	.scopenine-header-icon {
+		width: 36px;
+		height: 36px;
+		font-size: 18px;
+		border-radius: 8px;
+	}
+
+	.scopenine-admin-title {
+		font-size: 16px;
+	}
+
+	.scopenine-version-badge {
+		font-size: 10px;
+		padding: 3px 8px;
+	}
+
+	.scopenine-card-header {
+		padding: 10px 12px;
+	}
+
+	.scopenine-card-body {
+		padding: 8px 12px 12px;
+	}
+
+	.scopenine-card-title {
+		font-size: 13px;
+	}
+
+	.scopenine-padding-inputs {
+		flex-wrap: wrap;
+	}
+
+	.scopenine-padding-input-group {
+		flex: 0 0 calc(50% - 20px);
+	}
+
+	.scopenine-padding-link-btn {
+		margin-top: 8px;
+	}
+
+	.scopenine-fancy-select-trigger {
+		padding: 10px;
+		gap: 8px;
+	}
+
+	.scopenine-fancy-select-icon {
+		width: 28px;
+		height: 28px;
+	}
+
+	.scopenine-fancy-select-label {
+		font-size: 13px;
+	}
+}
