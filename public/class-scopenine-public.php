@@ -10,6 +10,10 @@
  * @subpackage Scope_Nine_Alert_Bar/public
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -124,6 +128,15 @@ class SCOPENINE_Public {
 			array( 'in_footer' => true )
 		);
 
+		if ( 'off' !== ( $scopenine_settings['scroll_text'] ?? 'off' ) ) {
+			wp_enqueue_style(
+				$this->plugin_name,
+				SCOPENINE_PLUGIN_URL . 'public/assets/css/scopenine-public.css',
+				array(),
+				$this->version
+			);
+		}
+
 	}
 
 	/**
@@ -165,6 +178,14 @@ class SCOPENINE_Public {
 		$padding_bottom = absint( $scopenine_settings['padding_bottom'] ?? 10 );
 		$padding_left   = absint( $scopenine_settings['padding_left'] ?? 40 );
 		$close_icon_url = $scopenine_settings['close_icon_url'] ?? '';
+		$scroll_mode    = $scopenine_settings['scroll_text'] ?? 'off';
+		$bar_classes    = 'scopenine-alert-bar';
+		if ( in_array( $scroll_mode, array( 'mobile', 'always' ), true ) ) {
+			$bar_classes .= ' scopenine-scroll-' . $scroll_mode;
+			if ( 'ltr' === ( $scopenine_settings['scroll_direction'] ?? 'rtl' ) ) {
+				$bar_classes .= ' scopenine-scroll-ltr';
+			}
+		}
 
 		// Build the close icon: custom upload or inline SVG default.
 		if ( ! empty( $close_icon_url ) ) {
@@ -176,10 +197,10 @@ class SCOPENINE_Public {
 		// Mark the bar with a data attribute for position so the script can move it if needed.
 		?>
 		<div id="scopenine-alert-bar"
-		     class="scopenine-alert-bar"
+		     class="<?php echo esc_attr( $bar_classes ); ?>"
 		     data-scopenine-position="<?php echo esc_attr( $scopenine_position ); ?>"
 		     style="background-color:<?php echo esc_attr( $bg_color ); ?>;color:<?php echo esc_attr( $txt_color ); ?>;font-size:<?php echo esc_attr( $font_size ); ?>px;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:9999;padding:<?php echo esc_attr( $padding_top ); ?>px <?php echo esc_attr( $padding_right ); ?>px <?php echo esc_attr( $padding_bottom ); ?>px <?php echo esc_attr( $padding_left ); ?>px;">
-			<span class="scopenine-alert-bar-content"><?php echo wp_kses_post( $news_title ); ?><?php echo wp_kses_post( $post_link_html ); ?></span>
+			<span class="scopenine-alert-bar-content"><span class="scopenine-alert-bar-track"><?php echo wp_kses_post( $news_title ); ?><?php echo wp_kses_post( $post_link_html ); ?></span></span>
 			<button type="button" class="scopenine-alert-bar-close" aria-label="<?php esc_attr_e( 'Dismiss alert', 'scope-nine-alert-bar' ); ?>" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;opacity:0.85;line-height:0;display:flex;align-items:center;justify-content:center;"><?php echo wp_kses( $close_icon, array( 'svg' => array( 'width' => true, 'height' => true, 'viewbox' => true, 'fill' => true, 'xmlns' => true ), 'path' => array( 'd' => true, 'fill' => true ), 'img' => array( 'src' => true, 'alt' => true, 'style' => true ) ) ); ?></button>
 		</div>
 		<?php

@@ -1,0 +1,69 @@
+/**
+ * Scope Nine Alert Bar - scrolling text.
+ *
+ * Loaded only when "Scrolling Text" is set to Mobile only or All screens.
+ * The track starts just off the right edge and slides left until it has fully
+ * left the bar (reversed for left-to-right). Duration is set by the front-end
+ * script from the message length so long and short messages move at the same speed.
+ */
+@keyframes scopenine-ticker {
+	from { transform: translateX(0); }
+	to { transform: translateX(-100%); }
+}
+
+.scopenine-alert-bar.scopenine-scroll-always .scopenine-alert-bar-content {
+	display: block;
+	flex: 1 1 auto;
+	min-width: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: left;
+}
+
+.scopenine-alert-bar.scopenine-scroll-always .scopenine-alert-bar-track {
+	display: inline-block;
+	padding-left: 100%;
+	animation: scopenine-ticker var(--scopenine-scroll-duration, 15s) linear infinite;
+	will-change: transform;
+}
+
+@media (max-width: 782px) {
+	.scopenine-alert-bar.scopenine-scroll-mobile .scopenine-alert-bar-content {
+		display: block;
+		flex: 1 1 auto;
+		min-width: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		text-align: left;
+	}
+
+	.scopenine-alert-bar.scopenine-scroll-mobile .scopenine-alert-bar-track {
+		display: inline-block;
+		padding-left: 100%;
+		animation: scopenine-ticker var(--scopenine-scroll-duration, 15s) linear infinite;
+		will-change: transform;
+	}
+}
+
+.scopenine-alert-bar.scopenine-scroll-ltr .scopenine-alert-bar-track {
+	animation-direction: reverse;
+}
+
+/* Let people stop the motion to read or click the link. */
+.scopenine-alert-bar .scopenine-alert-bar-content:hover .scopenine-alert-bar-track,
+.scopenine-alert-bar .scopenine-alert-bar-content:focus-within .scopenine-alert-bar-track,
+.scopenine-alert-bar.scopenine-scroll-paused .scopenine-alert-bar-track {
+	animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.scopenine-alert-bar .scopenine-alert-bar-track {
+		animation: none !important;
+		padding-left: 0 !important;
+	}
+
+	.scopenine-alert-bar .scopenine-alert-bar-content {
+		white-space: normal !important;
+		text-align: center !important;
+	}
+}

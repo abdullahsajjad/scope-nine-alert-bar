@@ -74,7 +74,7 @@ class SCOPENINE_Core {
 		if ( defined( 'SCOPENINE_VERSION' ) ) {
 			$this->version = SCOPENINE_VERSION;
 		} else {
-			$this->version = '1.0.1';
+			$this->version = '1.0.2';
 		}
 		$this->plugin_name = 'scope-nine-alert-bar';
 

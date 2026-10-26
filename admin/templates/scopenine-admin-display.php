@@ -15,16 +15,16 @@
 defined( 'ABSPATH' ) || die();
 
 $scopenine_settings   = get_option( 'scopenine_settings' );
-$bg_color       = esc_attr( $scopenine_settings['background_color'] ?? '#ff0000' );
-$txt_color      = esc_attr( $scopenine_settings['text_color'] ?? '#ffffff' );
-$font_size      = absint( $scopenine_settings['font_size'] ?? 14 );
-$padding_top    = absint( $scopenine_settings['padding_top'] ?? 10 );
-$padding_right  = absint( $scopenine_settings['padding_right'] ?? 40 );
-$padding_bottom = absint( $scopenine_settings['padding_bottom'] ?? 10 );
-$padding_left   = absint( $scopenine_settings['padding_left'] ?? 40 );
-$news_title     = $scopenine_settings['news_title'] ?? '';
-$close_icon_url = $scopenine_settings['close_icon_url'] ?? '';
-$default_icon   = SCOPENINE_PLUGIN_URL . 'admin/assets/img/close-default.svg';
+$scopenine_bg_color       = esc_attr( $scopenine_settings['background_color'] ?? '#ff0000' );
+$scopenine_txt_color      = esc_attr( $scopenine_settings['text_color'] ?? '#ffffff' );
+$scopenine_font_size      = absint( $scopenine_settings['font_size'] ?? 14 );
+$scopenine_padding_top    = absint( $scopenine_settings['padding_top'] ?? 10 );
+$scopenine_padding_right  = absint( $scopenine_settings['padding_right'] ?? 40 );
+$scopenine_padding_bottom = absint( $scopenine_settings['padding_bottom'] ?? 10 );
+$scopenine_padding_left   = absint( $scopenine_settings['padding_left'] ?? 40 );
+$scopenine_news_title     = $scopenine_settings['news_title'] ?? '';
+$scopenine_close_icon_url = $scopenine_settings['close_icon_url'] ?? '';
+$scopenine_default_icon   = SCOPENINE_PLUGIN_URL . 'admin/assets/img/close-default.svg';
 
 settings_errors();
 ?>
@@ -50,13 +50,13 @@ settings_errors();
 		</div>
 		<div id="scopenine-live-preview"
 		     class="scopenine-live-preview scopenine-alert-bar"
-		     style="background-color:<?php echo esc_attr( $bg_color ); ?>;color:<?php echo esc_attr( $txt_color ); ?>;font-size:<?php echo esc_attr( $font_size ); ?>px;padding:<?php echo esc_attr( $padding_top ); ?>px <?php echo esc_attr( $padding_right ); ?>px <?php echo esc_attr( $padding_bottom ); ?>px <?php echo esc_attr( $padding_left ); ?>px;">
-			<span class="scopenine-live-preview-content scopenine-alert-bar-content" id="scopenine-preview-content"><?php echo wp_kses_post( $news_title ); ?></span>
+		     style="background-color:<?php echo esc_attr( $scopenine_bg_color ); ?>;color:<?php echo esc_attr( $scopenine_txt_color ); ?>;font-size:<?php echo esc_attr( $scopenine_font_size ); ?>px;padding:<?php echo esc_attr( $scopenine_padding_top ); ?>px <?php echo esc_attr( $scopenine_padding_right ); ?>px <?php echo esc_attr( $scopenine_padding_bottom ); ?>px <?php echo esc_attr( $scopenine_padding_left ); ?>px;">
+			<span class="scopenine-live-preview-content scopenine-alert-bar-content" id="scopenine-preview-content"><?php echo wp_kses_post( $scopenine_news_title ); ?></span>
 			<span class="scopenine-live-preview-close scopenine-alert-bar-close" id="scopenine-preview-close">
-				<?php if ( ! empty( $close_icon_url ) ) : ?>
-					<img src="<?php echo esc_url( $close_icon_url ); ?>" alt="close" style="width:14px;height:14px;" />
+				<?php if ( ! empty( $scopenine_close_icon_url ) ) : ?>
+					<img src="<?php echo esc_url( $scopenine_close_icon_url ); ?>" alt="close" style="width:14px;height:14px;" />
 				<?php else : ?>
-					<svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.6746 0.3254C19.2408-0.1085 18.5373-0.1085 18.1035 0.3254L10 8.4289 1.8965 0.3254C1.4626-0.1085 0.7592-0.1085 0.3254 0.3254-0.1085 0.7592-0.1085 1.4626 0.3254 1.8965L8.4289 10 0.3254 18.1035C-0.1085 18.5374-0.1085 19.2407 0.3254 19.6746 0.7593 20.1085 1.4627 20.1085 1.8965 19.6746L10 11.5711 18.1035 19.6746C18.5373 20.1085 19.2408 20.1085 19.6746 19.6746 20.1084 19.2407 20.1084 18.5374 19.6746 18.1036L11.571 10 19.6746 1.8965C20.1084 1.4626 20.1084 0.7592 19.6746 0.3254Z" fill="<?php echo esc_attr( $txt_color ); ?>"/></svg>
+					<svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.6746 0.3254C19.2408-0.1085 18.5373-0.1085 18.1035 0.3254L10 8.4289 1.8965 0.3254C1.4626-0.1085 0.7592-0.1085 0.3254 0.3254-0.1085 0.7592-0.1085 1.4626 0.3254 1.8965L8.4289 10 0.3254 18.1035C-0.1085 18.5374-0.1085 19.2407 0.3254 19.6746 0.7593 20.1085 1.4627 20.1085 1.8965 19.6746L10 11.5711 18.1035 19.6746C18.5373 20.1085 19.2408 20.1085 19.6746 19.6746 20.1084 19.2407 20.1084 18.5374 19.6746 18.1036L11.571 10 19.6746 1.8965C20.1084 1.4626 20.1084 0.7592 19.6746 0.3254Z" fill="<?php echo esc_attr( $scopenine_txt_color ); ?>"/></svg>
 				<?php endif; ?>
 			</span>
 		</div>

@@ -4,7 +4,7 @@ Tags: alert bar, notification bar, announcement bar, header bar, notice
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPL-2.0+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,7 @@ You design the bar on one settings screen and see a live preview as you go. Noth
 * **Font size and padding** – fine-tune top, right, bottom, and left spacing
 * **Dismissible** – visitors can close the bar; upload your own close icon if you like
 * **Placement** – show the bar before or after your theme header
+* **Scrolling text** – optional news-ticker motion on mobile only or on all screens, in either direction
 * **Targeting** – show it site-wide, on the homepage only, or on specific pages and posts
 * **Feature a post** – link the bar to any post, with an optional custom title and expiry date
 * **On/off switch** – turn the bar off without losing your settings
@@ -65,6 +66,10 @@ Yes, the WYSIWYG editor supports bold, italic, underline, links, and text color 
 
 Use WordPress's own Additional CSS (Appearance → Customize → Additional CSS on classic themes, or the Site Editor on block themes). Target `.scopenine-alert-bar` for the bar and `.scopenine-alert-bar-close` for the close button.
 
+= Can the message scroll like a news ticker? =
+
+Yes. Under **Scrolling Text**, choose **Mobile only** or **All screens**, and pick the direction. Scrolling pauses when visitors hover or tap the bar, and it's turned off automatically for visitors who have reduced motion enabled on their device.
+
 = Who can feature a post in the bar? =
 
 Only administrators (users with the `manage_options` capability). Authors and editors don't see the Alert Bar box, and only published posts are linked.
@@ -81,6 +86,12 @@ Yes, the alert bar is fully responsive and adapts to all screen sizes.
 4. The Alert Bar box for featuring a post
 
 == Changelog ==
+
+= 1.0.2 =
+* New: optional scrolling text (mobile only or all screens, either direction)
+* Fix: saving the Advanced page no longer erases your alert bar design or turns the bar off
+* Fix: saving the Design page no longer clears the featured post or the data-removal setting
+* Colors, position and display options are now validated on save
 
 = 1.0.1 =
 * Security: only administrators can set or clear the featured alert bar post
@@ -101,6 +112,9 @@ Yes, the alert bar is fully responsive and adapts to all screen sizes.
 * Post linking with expiry dates
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+Fixes settings being erased when saving the Advanced page, and adds optional scrolling text.
 
 = 1.0.1 =
 Tightens who can change the featured alert bar post. Recommended for all users.

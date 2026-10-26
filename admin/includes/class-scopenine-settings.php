@@ -133,6 +133,14 @@ class SCOPENINE_Settings {
 		);
 
 		add_settings_field(
+			'scopenine_scroll_text',
+			__( 'Scrolling Text', 'scope-nine-alert-bar' ),
+			array( $this, 'scopenine_scroll_text_callback' ),
+			'scopenine_settings',
+			'scopenine_settings_section'
+		);
+
+		add_settings_field(
 			'scopenine_display_mode',
 			__( 'Display On', 'scope-nine-alert-bar' ),
 			array( $this, 'scopenine_display_mode_callback' ),
@@ -406,6 +414,40 @@ class SCOPENINE_Settings {
 	}
 
 	/**
+	 * Settings Field - Scrolling text (mode + direction)
+	 *
+	 * @since 1.0.2
+	 */
+	public function scopenine_scroll_text_callback() {
+		$mode      = $this->scopenine_settings['scroll_text'] ?? 'off';
+		$direction = $this->scopenine_settings['scroll_direction'] ?? 'rtl';
+		$modes     = array(
+			'off'    => __( 'Off', 'scope-nine-alert-bar' ),
+			'mobile' => __( 'Mobile only', 'scope-nine-alert-bar' ),
+			'always' => __( 'All screens', 'scope-nine-alert-bar' ),
+		);
+		$dirs      = array(
+			'rtl' => __( 'Right to left', 'scope-nine-alert-bar' ),
+			'ltr' => __( 'Left to right', 'scope-nine-alert-bar' ),
+		);
+		?>
+		<div class="scopenine-field-wrap scopenine-scroll-fields">
+			<select name="scopenine_settings[scroll_text]" id="scopenine_scroll_text" class="scopenine-settings-field">
+				<?php foreach ( $modes as $value => $label ) : ?>
+					<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $mode, $value ); ?>><?php echo esc_html( $label ); ?></option>
+				<?php endforeach; ?>
+			</select>
+			<select name="scopenine_settings[scroll_direction]" id="scopenine_scroll_direction" class="scopenine-settings-field" aria-label="<?php esc_attr_e( 'Scroll direction', 'scope-nine-alert-bar' ); ?>">
+				<?php foreach ( $dirs as $value => $label ) : ?>
+					<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $direction, $value ); ?>><?php echo esc_html( $label ); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</div>
+		<small class="scopenine-field-description"><?php esc_html_e( 'Scroll the message across the bar like a news ticker. "Mobile only" applies on screens narrower than 783px. Scrolling pauses on hover or tap and is turned off for visitors who prefer reduced motion.', 'scope-nine-alert-bar' ); ?></small>
+		<?php
+	}
+
+	/**
 	 * Settings Field - Selected Pages Callback method
 	 *
 	 * @since 1.0.0
@@ -477,33 +519,133 @@ class SCOPENINE_Settings {
 	}
 
 	/**
-	 * Sanitize Settings Fields Before Saving Data
+	 * Fields owned by the Design form. Anything not listed here (remove_data from the
+	 * Advanced form, post_id from the post meta box) must survive a Design save.
 	 *
-	 * @param array $options Settings options.
+	 * @var string[]
+	 */
+	const DESIGN_FIELDS = array(
+		'enabled',
+		'news_title',
+		'background_color',
+		'text_color',
+		'font_size',
+		'padding_top',
+		'padding_right',
+		'padding_bottom',
+		'padding_left',
+		'close_icon_url',
+		'scopenine_position',
+		'display_mode',
+		'selected_pages',
+		'scroll_text',
+		'scroll_direction',
+	);
+
+	/**
+	 * Sanitize settings before saving.
+	 *
+	 * The Design page, the Advanced page and the post meta box all store data in the same
+	 * `scopenine_settings` option. A form only submits its own fields, so each save is merged
+	 * into the stored option instead of replacing it.
+	 *
+	 * @param mixed $input Submitted value (null when a form submits no fields, e.g. an unticked checkbox).
 	 * @return array
 	 * @since 1.0.0
 	 */
-	public function sanitize_settings_fields( array $options ): array {
-		// Checkbox: when unchecked it is not in $_POST, so set explicitly.
-		$options['enabled'] = isset( $options['enabled'] ) && $options['enabled'] ? '1' : '';
+	public function sanitize_settings_fields( $input ): array {
+		$input = is_array( $input ) ? $input : array();
+
+		// options.php has already verified this form's nonce before sanitizing.
+		$option_page = isset( $_POST['option_page'] ) ? sanitize_key( wp_unslash( $_POST['option_page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+		if ( 'scopenine_settings' === $option_page || 'scopenine_advanced_settings' === $option_page ) {
+			$stored = get_option( 'scopenine_settings', array() );
+			$merged = is_array( $stored ) ? $stored : array();
+
+			if ( 'scopenine_settings' === $option_page ) {
+				foreach ( self::DESIGN_FIELDS as $field ) {
+					unset( $merged[ $field ] );
+				}
+				// Unticked checkboxes and an empty multi-select are not posted at all.
+				$merged['enabled']        = empty( $input['enabled'] ) ? '' : '1';
+				$merged['selected_pages'] = isset( $input['selected_pages'] ) ? (array) $input['selected_pages'] : array();
+				foreach ( self::DESIGN_FIELDS as $field ) {
+					if ( 'enabled' !== $field && 'selected_pages' !== $field && array_key_exists( $field, $input ) ) {
+						$merged[ $field ] = $input[ $field ];
+					}
+				}
+			} else {
+				unset( $merged['remove_data'] );
+				if ( ! empty( $input['remove_data'] ) ) {
+					$merged['remove_data'] = 'on';
+				}
+			}
+
+			$input = $merged;
+		}
+
+		return $this->clean_settings( $input );
+	}
+
+	/**
+	 * Sanitize every known key of the settings array.
+	 *
+	 * @param array $options Settings.
+	 * @return array
+	 * @since 1.0.2
+	 */
+	protected function clean_settings( array $options ): array {
+		$clean = array();
 
 		foreach ( $options as $key => $value ) {
-			if ( 'enabled' === $key ) {
-				continue; // Already set above.
-			}
-			if ( 'selected_pages' === $key && is_array( $value ) ) {
-				$options[ $key ] = array_map( 'sanitize_text_field', $value );
-			} elseif ( 'news_title' === $key ) {
-				$options[ $key ] = wp_kses_post( $value );
-			} elseif ( 'close_icon_url' === $key ) {
-				$options[ $key ] = esc_url_raw( $value );
-			} elseif ( in_array( $key, array( 'font_size', 'padding_top', 'padding_right', 'padding_bottom', 'padding_left' ), true ) ) {
-				$options[ $key ] = absint( $value );
-			} else {
-				$options[ $key ] = sanitize_text_field( $value );
+			switch ( $key ) {
+				case 'enabled':
+					$clean[ $key ] = $value ? '1' : '';
+					break;
+				case 'news_title':
+					$clean[ $key ] = wp_kses_post( $value );
+					break;
+				case 'background_color':
+				case 'text_color':
+					$color         = sanitize_hex_color( $value );
+					$clean[ $key ] = $color ? $color : ( 'text_color' === $key ? '#ffffff' : '#ff0000' );
+					break;
+				case 'close_icon_url':
+					$clean[ $key ] = esc_url_raw( $value );
+					break;
+				case 'font_size':
+				case 'padding_top':
+				case 'padding_right':
+				case 'padding_bottom':
+				case 'padding_left':
+				case 'post_id':
+					$clean[ $key ] = absint( $value );
+					break;
+				case 'selected_pages':
+					// Stored as strings: the front end compares IDs as strings.
+					$clean[ $key ] = array_values( array_map( 'strval', array_filter( array_map( 'absint', (array) $value ) ) ) );
+					break;
+				case 'scopenine_position':
+					$clean[ $key ] = in_array( $value, array( 'before-header', 'after-header' ), true ) ? $value : 'after-header';
+					break;
+				case 'display_mode':
+					$clean[ $key ] = in_array( $value, array( 'site_wide', 'homepage_only', 'specific_pages' ), true ) ? $value : 'site_wide';
+					break;
+				case 'scroll_text':
+					$clean[ $key ] = in_array( $value, array( 'off', 'mobile', 'always' ), true ) ? $value : 'off';
+					break;
+				case 'scroll_direction':
+					$clean[ $key ] = in_array( $value, array( 'rtl', 'ltr' ), true ) ? $value : 'rtl';
+					break;
+				case 'remove_data':
+					$clean[ $key ] = 'on';
+					break;
+				default:
+					$clean[ sanitize_key( $key ) ] = is_scalar( $value ) ? sanitize_text_field( (string) $value ) : '';
 			}
 		}
 
-		return $options;
+		return $clean;
 	}
 }

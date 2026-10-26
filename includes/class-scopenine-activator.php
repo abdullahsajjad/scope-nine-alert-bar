@@ -10,6 +10,10 @@
  * @subpackage Scope_Nine_Alert_Bar/includes
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Fired during plugin activation.
  *

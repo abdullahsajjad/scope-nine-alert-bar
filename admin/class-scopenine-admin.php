@@ -10,6 +10,10 @@
  * @subpackage Scope_Nine_Alert_Bar/admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The admin-specific functionality of the plugin.
  *

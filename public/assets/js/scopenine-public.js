@@ -9,11 +9,38 @@
 ( function () {
 	'use strict';
 
+	/**
+	 * Scrolling text: keep a steady reading speed (about 70px per second)
+	 * whatever the message length, and toggle pause on tap for touch screens.
+	 */
+	function setupScroll( bar ) {
+		var track = bar.querySelector( '.scopenine-alert-bar-track' );
+		if ( ! track || ! /scopenine-scroll-(mobile|always)/.test( bar.className ) ) {
+			return;
+		}
+		function setDuration() {
+			var distance = track.offsetWidth;
+			if ( distance > 0 ) {
+				bar.style.setProperty( '--scopenine-scroll-duration', Math.max( 6, distance / 70 ) + 's' );
+			}
+		}
+		setDuration();
+		window.addEventListener( 'resize', setDuration );
+		track.addEventListener( 'click', function ( event ) {
+			if ( event.target.closest( 'a' ) ) {
+				return;
+			}
+			bar.classList.toggle( 'scopenine-scroll-paused' );
+		} );
+	}
+
 	function init() {
 		var bar = document.getElementById( 'scopenine-alert-bar' );
 		if ( ! bar ) {
 			return;
 		}
+
+		setupScroll( bar );
 
 		var closeBtn = bar.querySelector( '.scopenine-alert-bar-close' );
 		if ( closeBtn ) {

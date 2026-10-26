@@ -16,7 +16,7 @@
  * Plugin Name:       Scope Nine Alert Bar
  * Plugin URI:        https://github.com/abdullahsajjad/scope-nine-alert-bar
  * Description:       A lightweight, fast, and beautifully designed alert bar plugin for WordPress. Display customizable notification banners with live preview, custom colors, and responsive design.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 5.0
  * Requires PHP:      7.1
  * Author:            Abdullah Sajjad
@@ -33,7 +33,7 @@ defined( 'ABSPATH' ) || die();
 /**
  * Currently plugin version.
  */
-define( 'SCOPENINE_VERSION', '1.0.1' );
+define( 'SCOPENINE_VERSION', '1.0.2' );
 
 /**
  * Plugin base path.
